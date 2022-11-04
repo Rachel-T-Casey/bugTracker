@@ -1,16 +1,17 @@
+const express = require('express')
+const app = express()
+const cors = require('cors')
 
-const express = require("express");
+app.use(cors())
+app.use(express.json())
 
-const PORT = process.env.PORT || 8081;
+app.post('/api/users/register', (req, res) => {
+  const { username, email, password } = req.body;
+  res.send(req.body);
+  console.log(username);
+  console.log(email);
+  console.log(password);
 
-const app = express();
+})
 
-app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
-  app.post("/api/users/register", (req, res) => {
-    console.log("Registering user");
-    console.log(req.body);
-  });
-});
-
-// API to register a new user
+app.listen(5000)
